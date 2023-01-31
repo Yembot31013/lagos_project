@@ -373,5 +373,3 @@ The main folders are;
               └───js
                   └───vendor
 ```
-
-### hell
