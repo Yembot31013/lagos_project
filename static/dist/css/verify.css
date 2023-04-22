@@ -1,0 +1,48 @@
+.contain{
+    width: 100vw;
+    height: 100vh;
+    background: url('../img/setting_png.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.contain .content{
+    width: 100%;
+    height: 100%;
+    background: #2017179b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.contain .content .content-body{
+    background-color: #ccc;
+    border-radius: 20px;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+.contain .content .content-body img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+.contain .content .content-body img:hover{
+    border: #2017179b solid 3px;
+}
+.contain .content .content-body .text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+}
+.contain .content .content-body .text .text-header{
+    font-size: 25px;
+    font-weight: bolder;
+}
+.contain .content .content-body .text .text-value{
+    font-size: 20px;
+    font-weight: lighter;
+}

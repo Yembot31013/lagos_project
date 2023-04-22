@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+		<meta charset="utf-8">
+		<title>page access denied</title>
+		<meta name="description" content="#">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
+		<!-- Bootstrap core CSS -->
+		<link href="{% static 'dist/css/lib/bootstrap.min.css' %}" type="text/css" rel="stylesheet">
+		<link href="{% static 'dist/css/verify.css' %}" type="text/css" rel="stylesheet">
+		<!-- Favicon -->
+		<link href="{% static 'dist/img/favicon.png' %}" type="image/png" rel="icon">
+		<link rel="stylesheet" href="{% static 'dist/css/alertify.min.css' %}">
+	</head>
+	<body>
+		<div class="contain">
+			<div class="content">
+				<div class="content-body shadow-lg">
+                    <img src="{% static 'dist/img/profile.jpg' %}" class="img" alt="...">
+					<div class="text">
+						<div class="text-header">{{title}}</div>
+						<div class="text-value text-wrap w-75 text-center">{{description}}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="{% static 'dist/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+		<script src="{% static 'dist/js/bootstrap.min.js' %}"></script>
+		<script src="{% static 'dist/js/alertify.min.js' %}"></script>
+		<script>
+			alertify.set("notifier", "position", "top-right");
+			{% for msg in messages %}
+				alertify.success("{{msg}}")
+			{% endfor %}
+		</script>
+	</body>
+</html>

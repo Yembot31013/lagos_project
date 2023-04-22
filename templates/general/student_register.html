@@ -1,0 +1,190 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'dist/css/lib/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/settings.css' %}">
+    <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{% static 'plugins/select2/css/select2.min.css' %}">
+    <link rel="stylesheet" href="{% static 'plugins/select2-bootstrap-5-theme-1.3.0/select2-bootstrap-5-theme.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/flatpickr.css' %}">
+    <script src="{% static 'dist/js/flatpickr.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'dist/css/alertify.min.css' %}">
+</head>
+<body>
+    <form method="POST" action="{% url 'createProfile' %}" class="formResult">
+        {% csrf_token %}
+        <div class="survey" id="survey1">
+            <div class="survey-contain">
+                <div class="survey-content survey1 shadow-lg">
+                    <div class="title">Personal Info</div>
+                    <div class="mb-2 w-100">
+                        <label for="exampleFormControlInput1" class="form-label">Full Name</label>
+                        <input class="form-control form-control-lg full-name" type="text" placeholder="Full Name" name="full_name">
+                    </div>
+                    <div class="mb-2 w-100">
+                        <label for="exampleFormControlInput1" class="form-label">Date Of Birth</label>
+                        <input type="text" class="form-control form-control-lg" id="dob" name="dob" placeholder="Select date of birth">
+                    </div>
+                    <div class="btn-group">
+                        <a href="#survey2" class="btn btn-outline-primary" id="next1">Next</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="survey" id="survey2">
+            <div class="survey-contain">
+                <div class="survey-content survey1 shadow-lg">
+                    <div class="title">ROLE</div>
+                    <select class="form-control select2bs5" name="role" id="role">
+                        <option selected="selected">Student</option>
+                        <option>Teacher</option>
+                        <option>Examiner</option>
+                    </select>
+                    <div class="btn-group justify-content-center">
+                        <a href="#survey1" class="btn btn-outline-primary">Previous</a>
+                        <a href="#survey3" class="btn btn-outline-primary" id="next2">Next</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="survey" id="survey3">
+            <div class="survey-contain">
+                <div class="survey-content survey1 shadow-lg">
+                    <div class="title">SEX</div>
+                    <div class="radio-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="sex" id="flexRadioDefault1">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                Male
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="sex" id="flexRadioDefault2" checked>
+                            <label class="form-check-label" for="flexRadioDefault2">
+                                Female
+                            </label>
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <a href="#survey2" class="btn btn-outline-primary">Previous</a>
+                        <a href="#survey4" class="btn btn-outline-primary" id="next3">Next</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="survey" id="survey4">
+            <div class="survey-contain">
+                <div class="survey-content survey1 shadow-lg">
+                    <div class="title">School</div>
+                    <div class="row field w-100">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Local Government<span>*</span></label>
+                                <select class="form-control select2bs5" style="width: 100%;" id="local_government" name="local_government">
+                                    
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>District<span>*</span></label>
+                                <select class="form-control select2bs5" style="width: 100%;" name="district" id="district">
+                                    
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row field w-100">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>School<span>*</span></label>
+                                <select class="form-control select2bs5" style="width: 100%;" name="school" id="school">
+                                    
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <a href="#survey3" class="btn btn-outline-primary">Previous</a>
+                        <a href="#survey5" class="btn btn-outline-primary" id="next4">Next</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="survey" id="survey5">
+            <div class="survey-contain">
+                <div class="survey-content survey1 shadow-lg align-items-baseline">
+                    <div class="title">Profile Picture</div>
+                    <img src="{% static 'dist/img/profile.jpg' %}" class="img" alt="...">
+                    <p class="lead text-center">Click To upload Image</p>
+                    <input type="file" name="picture" class="profile-pic" accept="image/*" hidden>
+                    <div class="btn-group">
+                        <a href="#survey4" class="btn btn-outline-primary">Previous</a>
+                        <a href="#survey6" class="btn btn-outline-primary" id="next5">Next</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="survey" id="survey6">
+            <div class="survey-contain">
+                <div class="survey-content survey1 shadow-lg align-items-baseline">
+                    <div class="title">Terms & Agreement</div>
+                    <div class="form-check form-switch">
+                        <input type="text" id="longitude" name="longitude" hidden>
+                        <input type="text" id="latitude" name="latitude" hidden>
+                        <input class="form-check-input" type="checkbox" role="switch" id="location">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">I agree that you can access my location.</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="camera">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">I agree that you can access my camera and microphone during exam.</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="terms">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">I agree to the term & policies.</label>
+                    </div>
+                    <div class="btn-group">
+                        <a href="#survey5" class="btn btn-outline-primary">Previous</a>
+                        <button class="btn btn-outline-primary" id="next6" type="submit">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <script src="{% static 'dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'dist/js/jquery.js' %}"></script>
+    <script src="{% static 'dist/js/sweetalert.js' %}"></script>
+    <!-- Select2 -->
+    <script src="{% static 'plugins/select2/js/select2.full.min.js' %}"></script>
+    <script src="{% static 'dist/js/index.global.min.js' %}"></script>
+    <script src="{% static 'dist/js/alertify.min.js' %}"></script>
+    <script src="{% static 'dist/js/settings.js' %}"></script>
+
+    <script>
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2()
+
+            //Initialize Select2 Elements
+            $('.select2bs5').select2({
+                theme: 'bootstrap-5'
+            })
+        })
+    </script>
+    <script>
+        const dobInput = document.getElementById('dob');
+        flatpickr(dobInput, {
+        dateFormat: 'Y-m-d', // set the date format
+        maxDate: new Date(), // set the maximum date to today's date
+        defaultDate: new Date(2000, 0, 1), // set the default date to January 1, 2000
+        });
+    </script>
+</body>
+</html>

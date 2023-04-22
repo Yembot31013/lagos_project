@@ -1,0 +1,116 @@
+{% extends 'teacher/base.html' %}
+
+{% block content %}
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>
+            Fixtures
+          </h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="dashboard.html">Dashboard</a></li>
+            <li class="breadcrumb-item active">Fixtures</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-6">
+          <!-- small card -->
+          <div class="small-box bg-success">
+            <!-- Loading (remove the following to stop the loading)-->
+            <div class="overlay dark">
+              <i class="fas fa-3x fa-unlock-alt"></i>
+            </div>
+            <!-- end loading -->
+            <div class="inner">
+              <h3>3<sup style="font-size: 20px"> Students</sup></h3>
+
+              <p>Final Competition</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="#" class="small-box-footer">
+              More info <i class="fas fa-arrow-circle-right"></i>
+            </a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-6">
+          <!-- small card -->
+          <div class="small-box bg-info">
+            <!-- Loading (remove the following to stop the loading)-->
+            <div class="overlay">
+              <i class="fas fa-3x fa-lock-open"></i>
+            </div>
+            <!-- end loading -->
+            <div class="inner">
+              <h3>7<sup style="font-size: 20px"> Students</sup></h3>
+
+              <p>Quarter Final Competition</p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-shopping-cart"></i>
+            </div>
+            <a href="#" class="small-box-footer">
+              More info <i class="fas fa-arrow-circle-right"></i>
+            </a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-6">
+          <!-- small card -->
+          <div class="small-box bg-success">
+            <div class="inner">
+              <h3>10<sup style="font-size: 20px"> Students</sup></h3>
+
+              <p>Semi Final Competition</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="moreFixture.html" class="small-box-footer">
+              More info <i class="fas fa-arrow-circle-right"></i>
+            </a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-6">
+          <!-- small card -->
+          <div class="small-box bg-success">
+            
+            <div class="inner">
+              <h3>20<sup style="font-size: 20px"> Students</sup></h3>
+
+              <p>Qualifier Competition</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="moreFixture.html" class="small-box-footer">
+              More info <i class="fas fa-arrow-circle-right"></i>
+            </a>
+          </div>
+        </div>
+        <!-- ./col -->
+      </div>
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+  <a id="back-to-top" href="#" class="btn btn-primary back-to-top" role="button" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </a>
+</div>
+{% endblock content %}
