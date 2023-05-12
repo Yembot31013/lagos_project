@@ -85,8 +85,8 @@ TEMPLATES = [
     },
 ]
 
-# WSGI_APPLICATION = 'system.wsgi.application'
-ASGI_APPLICATION = 'software.asgi.application'
+WSGI_APPLICATION = 'system.wsgi.application'
+# ASGI_APPLICATION = 'software.asgi.application'
 
 
 # Database
