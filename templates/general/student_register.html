@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{% static 'dist/css/alertify.min.css' %}">
 </head>
 <body>
-    <form method="POST" action="{% url 'createProfile' %}" class="formResult">
+    <form method="POST" class="formResult" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="survey" id="survey1">
             <div class="survey-contain">
@@ -26,6 +26,10 @@
                     <div class="mb-2 w-100">
                         <label for="exampleFormControlInput1" class="form-label">Full Name</label>
                         <input class="form-control form-control-lg full-name" type="text" placeholder="Full Name" name="full_name">
+                    </div>
+                    <div class="mb-2 w-100">
+                        <label for="exampleFormControlInput1" class="form-label">Email</label>
+                        <input class="form-control form-control-lg email" type="email" placeholder="Email" name="email">
                     </div>
                     <div class="mb-2 w-100">
                         <label for="exampleFormControlInput1" class="form-label">Date Of Birth</label>
@@ -40,84 +44,29 @@
         <div class="survey" id="survey2">
             <div class="survey-contain">
                 <div class="survey-content survey1 shadow-lg">
-                    <div class="title">ROLE</div>
-                    <select class="form-control select2bs5" name="role" id="role">
-                        <option selected="selected">Student</option>
-                        <option>Teacher</option>
-                        <option>Examiner</option>
-                    </select>
-                    <div class="btn-group justify-content-center">
-                        <a href="#survey1" class="btn btn-outline-primary">Previous</a>
-                        <a href="#survey3" class="btn btn-outline-primary" id="next2">Next</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="survey" id="survey3">
-            <div class="survey-contain">
-                <div class="survey-content survey1 shadow-lg">
                     <div class="title">SEX</div>
                     <div class="radio-group">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="sex" id="flexRadioDefault1">
+                            <input class="form-check-input" type="radio" name="sex" id="flexRadioDefault1" value="male">
                             <label class="form-check-label" for="flexRadioDefault1">
                                 Male
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="sex" id="flexRadioDefault2" checked>
+                            <input class="form-check-input" type="radio" name="sex" id="flexRadioDefault2" value="male" checked>
                             <label class="form-check-label" for="flexRadioDefault2">
                                 Female
                             </label>
                         </div>
                     </div>
                     <div class="btn-group">
-                        <a href="#survey2" class="btn btn-outline-primary">Previous</a>
-                        <a href="#survey4" class="btn btn-outline-primary" id="next3">Next</a>
+                        <a href="#survey1" class="btn btn-outline-primary">Previous</a>
+                        <a href="#survey3" class="btn btn-outline-primary" id="next3">Next</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="survey" id="survey4">
-            <div class="survey-contain">
-                <div class="survey-content survey1 shadow-lg">
-                    <div class="title">School</div>
-                    <div class="row field w-100">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Local Government<span>*</span></label>
-                                <select class="form-control select2bs5" style="width: 100%;" id="local_government" name="local_government">
-                                    
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>District<span>*</span></label>
-                                <select class="form-control select2bs5" style="width: 100%;" name="district" id="district">
-                                    
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row field w-100">
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label>School<span>*</span></label>
-                                <select class="form-control select2bs5" style="width: 100%;" name="school" id="school">
-                                    
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="btn-group">
-                        <a href="#survey3" class="btn btn-outline-primary">Previous</a>
-                        <a href="#survey5" class="btn btn-outline-primary" id="next4">Next</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="survey" id="survey5">
+        <div class="survey" id="survey3">
             <div class="survey-contain">
                 <div class="survey-content survey1 shadow-lg align-items-baseline">
                     <div class="title">Profile Picture</div>
@@ -125,32 +74,7 @@
                     <p class="lead text-center">Click To upload Image</p>
                     <input type="file" name="picture" class="profile-pic" accept="image/*" hidden>
                     <div class="btn-group">
-                        <a href="#survey4" class="btn btn-outline-primary">Previous</a>
-                        <a href="#survey6" class="btn btn-outline-primary" id="next5">Next</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="survey" id="survey6">
-            <div class="survey-contain">
-                <div class="survey-content survey1 shadow-lg align-items-baseline">
-                    <div class="title">Terms & Agreement</div>
-                    <div class="form-check form-switch">
-                        <input type="text" id="longitude" name="longitude" hidden>
-                        <input type="text" id="latitude" name="latitude" hidden>
-                        <input class="form-check-input" type="checkbox" role="switch" id="location">
-                        <label class="form-check-label" for="flexSwitchCheckDefault">I agree that you can access my location.</label>
-                    </div>
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="camera">
-                        <label class="form-check-label" for="flexSwitchCheckDefault">I agree that you can access my camera and microphone during exam.</label>
-                    </div>
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="terms">
-                        <label class="form-check-label" for="flexSwitchCheckDefault">I agree to the term & policies.</label>
-                    </div>
-                    <div class="btn-group">
-                        <a href="#survey5" class="btn btn-outline-primary">Previous</a>
+                        <a href="#survey2" class="btn btn-outline-primary">Previous</a>
                         <button class="btn btn-outline-primary" id="next6" type="submit">Submit</button>
                     </div>
                 </div>
@@ -165,8 +89,14 @@
     <script src="{% static 'plugins/select2/js/select2.full.min.js' %}"></script>
     <script src="{% static 'dist/js/index.global.min.js' %}"></script>
     <script src="{% static 'dist/js/alertify.min.js' %}"></script>
-    <script src="{% static 'dist/js/settings.js' %}"></script>
-
+    <script src="{% static 'dist/js/student_register.js' %}"></script>
+    <script src="{% static 'dist/js/alertify.min.js' %}"></script>
+    <script>
+        alertify.set("notifier", "position", "top-right");
+        {% for msg in messages %}
+            alertify.success("{{msg}}")
+        {% endfor %}
+    </script>
     <script>
         $(function () {
             //Initialize Select2 Elements

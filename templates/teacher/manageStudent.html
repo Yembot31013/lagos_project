@@ -95,58 +95,149 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th style="width: 10px">#</th>
-                    <th>Name</th>
-                    <th>Register Date</th>
-                    <th>Approved Date</th>
-                    <th style="width: 40px">active</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>2.</td>
-                    <td>Samuel Kehinde</td>
-                    <td>
-                      23/1/2023
-                    </td>
-                    <td>
-                      7 min ago
-                    </td>
-                    <td class="text-center">
-                      <input type="checkbox"/>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>3.</td>
-                    <td>tawio Adeyemi</td>
-                    <td>
-                      10/7/2023
-                    </td>
-                    <td>
-                      10 mins ago
-                    </td>
-                    <td class="text-center">
-                      <input type="checkbox"/>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>4.</td>
-                    <td>Adekojo Adesewa</td>
-                    <td>
-                      23/9/2003
-                    </td>
-                    <td>
-                      3 mins ago
-                    </td>
-                    <td class="text-center">
-                      <input type="checkbox"/>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+              <div class="table-responsive">
+                <table class="datatable table table-hover table-center mb-0">
+                  <thead>
+                    <tr>
+                      <th>Mentor Name</th>
+                      <th>Course</th>
+                      <th>Mentee Name</th>
+                      <th>Booking Time</th>
+                      <th>Status</th>
+                      <th class="text-end">Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <h2 class="table-avatar">
+                          <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-08.jpg" alt="User Image"></a>
+                          <a href="profile.html">James Amen</a>
+                        </h2>
+                      </td>
+                      <td>Maths</td>
+                      <td>
+                        <h2 class="table-avatar">
+                          <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/img/user/user.jpg" alt="User Image"></a>
+                          <a href="profile.html">Jonathan Doe </a>
+                        </h2>
+                      </td>
+                      <td>9 Nov 2019 <span class="text-primary d-block">11.00 AM - 11.15 AM</span></td>
+                      <td>
+                        <div class="status-toggle">
+                          <input type="checkbox" id="status_1" class="check" checked>
+                          <label for="status_1" class="checktoggle">checkbox</label>
+                        </div>
+                      </td>
+                      <td class="text-center">
+                        $200.00
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <h2 class="table-avatar">
+                          <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-07.jpg" alt="User Image"></a>
+                          <a href="profile.html">Jessica Fogarty</a>
+                        </h2>
+                      </td>
+                      <td>Business Maths</td>
+                      <td>
+                        <h2 class="table-avatar">
+                          <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/img/user/user1.jpg" alt="User Image"></a>
+                          <a href="profile.html">Julie Pennington </a>
+                        </h2>
+                      </td>
+                      
+                      <td>5 Nov 2019 <span class="text-primary d-block">11.00 AM - 11.35 AM</span></td>
+                      <td>
+                        <div class="status-toggle">
+                          <input type="checkbox" id="status_2" class="check" checked>
+                          <label for="status_2" class="checktoggle">checkbox</label>
+                        </div>
+                      </td>
+                      <td class="text-center">
+                        $300.00
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <h2 class="table-avatar">
+                          <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-17.jpg" alt="User Image"></a>
+                          <a href="profile.html">Jose Anderson</a>
+                        </h2>
+                      </td>
+                      <td>Algebra</td>
+                      <td>
+                        <h2 class="table-avatar">
+                          <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/img/user/user2.jpg" alt="User Image"></a>
+                          <a href="profile.html">Tyrone Roberts</a>
+                        </h2>
+                      </td>
+                      <td>11 Nov 2019 <span class="text-primary d-block">12.00 PM - 12.15 PM</span></td>
+                      <td>
+                        <div class="status-toggle">
+                          <input type="checkbox" id="status_3" class="check" checked>
+                          <label for="status_3" class="checktoggle">checkbox</label>
+                        </div>
+                      </td>
+                      <td class="text-center">
+                        $150.00
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <h2 class="table-avatar">
+                          <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-06.jpg" alt="User Image"></a>
+                          <a href="profile.html">Sofia Brient</a>
+                        </h2>
+                      </td>
+                      <td>Integrated Sum</td>
+                      <td>
+                        <h2 class="table-avatar">
+                          <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/img/user/user3.jpg" alt="User Image"></a>
+                          <a href="profile.html">Allen Davis </a>
+                        </h2>
+                      </td>
+                      <td>7 Nov 2019<span class="text-primary d-block">1.00 PM - 1.20 PM</span></td>
+                      <td>
+                        <div class="status-toggle">
+                          <input type="checkbox" id="status_4" class="check" checked>
+                          <label for="status_4" class="checktoggle">checkbox</label>
+                        </div>
+                      </td>
+                      <td class="text-center">
+                        $150.00
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <h2 class="table-avatar">
+                          <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-14.jpg" alt="User Image"></a>
+                          <a href="profile.html">Marvin Campbell</a>
+                        </h2>
+                      </td>
+                      <td>Flow chart</td>
+                      <td>
+                        <h2 class="table-avatar">
+                          <a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/img/user/user4.jpg" alt="User Image"></a>
+                          <a href="profile.html">Patricia Manzi </a>
+                        </h2>
+                      </td>
+                      
+                      <td>15 Nov 2019 <span class="text-primary d-block">1.00 PM - 1.15 PM</span></td>
+                      <td>
+                        <div class="status-toggle">
+                          <input type="checkbox" id="status_5" class="check" checked>
+                          <label for="status_5" class="checktoggle">checkbox</label>
+                        </div>
+                      </td>
+                      <td class="text-center">
+                        $200.00
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           <!-- /.card -->
         </div>

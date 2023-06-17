@@ -188,14 +188,14 @@ $(document).ready(function () {
     $(function(){
         $.ajax({
             method: "GET",
-            url: "/get_local_government/",
+            url: "/get_district/",
             success: function (response) {
                 // document.querySelector(".lang_level").innerHTML = ""
-				document.querySelector("#local_government").innerHTML = `<option value="">SELECT A LOCAL GOVERNMENT</option>`
-                var local_government = document.querySelector("#local_government")
+				document.querySelector("#district").innerHTML = `<option value="">SELECT A District</option>`
+                var district = document.querySelector("#district")
                 response.map(data => {
                     let value = `<option>${data.name}</option>`;
-                    $("#local_government").append(value)
+                    $("#district").append(value)
                 })
                 // document.querySelector(".lang_level").innerHTML = result
             },
@@ -206,19 +206,19 @@ $(document).ready(function () {
         })
     })
 
-    $("#local_government").on("change", (e) => {
-		var local_government = $("#local_government").val().trim();
-		if (local_government) {
+    $("#district").on("change", (e) => {
+		var district = $("#district").val().trim();
+		if (district) {
 			$.ajax({
 			method: "GET",
-			url: "/get_district/",
-			data: {"local_government": local_government},
+			url: "/get_local_government/",
+			data: {"district": district},
 			success: function (response) {
-				document.querySelector("#district").innerHTML = `<option value="">SELECT A DISTRICT</option>`
-				var doc = document.querySelector("#district")
+				document.querySelector("#local_government").innerHTML = `<option value="">SELECT A Local Government</option>`
+				var local_government = document.querySelector("#local_government")
 				response.map(data => {
 					let value = `<option>${data.name}</option>`;
-					$("#district").append(value)
+					$("#local_government").append(value)
 				})
 				// document.querySelector(".lang_level").innerHTML = result
 			},
@@ -230,16 +230,16 @@ $(document).ready(function () {
 		}
 	})
 
-    $("#district").on("change", (e) => {
-		var local_government = $("#local_government").val().trim();
+    $("#local_government").on("change", (e) => {
 		var district = $("#district").val().trim();
+		var local_government = $("#local_government").val().trim();
 		if (local_government && district) {
 			$.ajax({
 			method: "GET",
 			url: "/get_school/",
 			data: {
-				"local_government": local_government,
 				"district": district,
+				"local_government": local_government,
 			},
 			success: function (response) {
 				document.querySelector("#school").innerHTML = `<option value="">SELECT A SCHOOL</option>`

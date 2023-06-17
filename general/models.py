@@ -44,20 +44,21 @@ class Competition(models.Model):
         
         super(Competition, self).save(*args, **kwargs) # Call the real save() method
 
-class Zone(models.Model):
-    name = models.CharField(max_length=100)
-    added_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.name
 
 class District(models.Model):
     name = models.CharField(max_length=100)
-    zone = models.ForeignKey(Zone, related_name='district', on_delete=models.CASCADE)
     added_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.zone.name} => {self.name}"
+        return f"{self.name}"
+
+class Zone(models.Model):
+    name = models.CharField(max_length=100)
+    district = models.ForeignKey(District, related_name='zone', on_delete=models.CASCADE, null=True)
+    added_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.district.name} => {self.name}"
     
 class School(models.Model):
     SCHOOL_LEVEL = [

@@ -1,102 +1,187 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-		<meta charset="utf-8">
-		<title>Sign Up</title>
-		<meta name="description" content="#">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<!-- Bootstrap core CSS -->
-		<link href="{% static 'dist/css/lib/bootstrap.min.css' %}" type="text/css" rel="stylesheet">
-		<!-- Swipe core CSS -->
-		<link href="{% static 'dist/css/swipe.min.css' %}" type="text/css" rel="stylesheet">
-		<!-- Favicon -->
-		<link href="{% static 'dist/img/favicon.png' %}" type="image/png" rel="icon">
-		<link rel="stylesheet" href="{% static 'dist/css/alertify.min.css' %}">
-	</head>
-	<body class="start">
-		<main>
-			<div class="layout">
-				<!-- Start of Sign Up -->
-				<div class="main order-md-2">
-					<div class="start">
-						<div class="container">
-							<div class="col-md-12">
-								<div class="content">
-									<h1>Create Account</h1>
-									<div class="third-party">
-										<button class="btn item bg-blue">
-											<i class="material-icons">pages</i>
-										</button>
-										<button class="btn item bg-teal">
-											<i class="material-icons">party_mode</i>
-										</button>
-										<button class="btn item bg-purple">
-											<i class="material-icons">whatshot</i>
-										</button>
-									</div>
-									<p>or use your email for registration:</p>
-									<form class="signup" method="post">
-										{% csrf_token %}
-										<div class="form-parent">
-											<div class="form-group">
-												{{form.username}}
-												<button class="btn icon"><i class="material-icons">person_outline</i></button>
-											</div>
-											<div class="form-group">
-												{{form.email}}
-												<button class="btn icon"><i class="material-icons">mail_outline</i></button>
-											</div>
-										</div>
-										<div class="form-group">
-											{{form.password1}}
-											<button class="btn icon"><i class="material-icons">lock_outline</i></button>
-										</div>
-										<div class="form-group">
-											{{form.password2}}
-											<button class="btn icon"><i class="material-icons">lock_outline</i></button>
-										</div>
-										<button type="submit" class="btn button" formaction="{% url 'registerPage' %}">Sign Up</button>
-										<div class="callout">
-											<span>Already a member? <a href="{% url 'loginPage' %}">Sign In</a></span>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- End of Sign Up -->
-				<!-- Start of Sidebar -->
-				<div class="aside order-md-1">
-					<div class="container">
-						<div class="col-md-12">
-							<div class="preference">
-								<h2>Welcome Back!</h2>
-								<p>To keep connected with your friends please login with your personal info.</p>
-								<a href="{% url 'loginPage' %}" class="btn button">Sign In</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- End of Sidebar -->
-			</div> <!-- Layout -->
-		</main>
-		<!-- Bootstrap core JavaScript
-		================================================== -->
-		<!-- Placed at the end of the document so the pages load faster -->
-		<script src="{% static 'dist/js/jquery.js' %}"></script>
-		<script src="{% static 'dist/js/vendor/popper.min.js' %}"></script>
-		<script src="{% static 'dist/js/bootstrap.min.js' %}"></script>
-		<script src="{% static 'dist/js/alertify.min.js' %}"></script>
-		<script>
-			alertify.set("notifier", "position", "top-right");
-			{% for msg in messages %}
-				alertify.success("{{msg}}");
-			{% endfor %}
-		</script>
-	</body>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'dist/css/lib/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/settings.css' %}">
+    <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{% static 'plugins/select2/css/select2.min.css' %}">
+    <link rel="stylesheet" href="{% static 'plugins/select2-bootstrap-5-theme-1.3.0/select2-bootstrap-5-theme.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/alertify.min.css' %}">
+</head>
+<body>
+    <form method="POST" class="formResult" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="survey" id="survey1">
+            <div class="survey-contain">
+                <div class="survey-content survey1 shadow-lg">
+                    <div class="title">Personal Info</div>
+                    <div class="mb-2 w-100">
+                        <label for="exampleFormControlInput1" class="form-label">Full Name</label>
+                        <input class="form-control form-control-lg full-name" type="text" placeholder="Full Name" name="full_name">
+                    </div>
+                    <div class="mb-2 w-100">
+                        <label for="exampleFormControlInput1" class="form-label">User Name</label>
+                        {{form.username}}                    
+                    </div>
+                    <div class="mb-2 w-100">
+                        <label for="exampleFormControlInput1" class="form-label">Email</label>
+                        {{form.email}}                   
+                    </div>
+                    <div class="btn-group">
+                        <a href="#survey2" class="btn btn-outline-primary" id="next1">Next</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="survey" id="survey2">
+            <div class="survey-contain">
+                <div class="survey-content survey1 shadow-lg">
+                    <div class="title">School</div>
+                    <div class="row field w-100">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>District<span>*</span></label>
+                                <select class="form-control select2bs5" style="width: 100%;" id="district" name="district">                        
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Level<span>*</span></label>
+                                <select class="form-control select2bs5" style="width: 100%;" name="level" id="level">
+                                    <option value="JUNIOR">Junior</option>
+                                    <option value="SENIOR">Senior</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row field w-100">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>Zone<span>*</span></label>
+                                <select class="form-control select2bs5" style="width: 100%;" id="local_government" name="zone">
+                                    
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row field w-100">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>School<span>*</span></label>
+                                <select class="form-control select2bs5" style="width: 100%;" name="school" id="school">
+                                    
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <a href="#survey1" class="btn btn-outline-primary">Previous</a>
+                        <a href="#survey3" class="btn btn-outline-primary" id="next4">Next</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="survey" id="survey3">
+            <div class="survey-contain">
+                <div class="survey-content survey1 shadow-lg align-items-baseline">
+                    <div class="title">Profile Picture</div>
+                    <img src="{% static 'dist/img/profile.jpg' %}" class="img" alt="...">
+                    <p class="lead text-center">Click To upload Image</p>
+                    <input type="file" name="picture" class="profile-pic" accept="image/*" hidden>
+                    <div class="btn-group">
+                        <a href="#survey2" class="btn btn-outline-primary">Previous</a>
+                        <a href="#survey4" class="btn btn-outline-primary" id="next5">Next</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="survey" id="survey4">
+            <div class="survey-contain">
+                <div class="survey-content survey1 shadow-lg">
+                    <div class="title">Crediential</div>
+                    <div class="row field w-100">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>Password<span>*</span></label>
+                                {{form.password1}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row field w-100">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>Confirm Password<span>*</span></label>
+                                {{form.password2}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <a href="#survey3" class="btn btn-outline-primary">Previous</a>
+                        <a href="#survey5" class="btn btn-outline-primary" id="next4">Next</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="survey" id="survey5">
+            <div class="survey-contain">
+                <div class="survey-content survey1 shadow-lg align-items-baseline">
+                    <div class="title">Terms & Agreement</div>
+                    <div class="form-check form-switch">
+                        <input type="text" id="longitude" name="longitude" hidden>
+                        <input type="text" id="latitude" name="latitude" hidden>
+                        <input class="form-check-input" type="checkbox" role="switch" id="location">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">I agree that you can access my location.</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="camera">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">I agree that you can access my camera and microphone during exam.</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="terms">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">I agree to the term & policies.</label>
+                    </div>
+                    <div class="btn-group">
+                        <a href="#survey4" class="btn btn-outline-primary">Previous</a>
+                        <button class="btn btn-outline-primary" id="next6" type="submit">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 
+    <script src="{% static 'dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'dist/js/jquery.js' %}"></script>
+    <script src="{% static 'dist/js/sweetalert.js' %}"></script>
+    <!-- Select2 -->
+    <script src="{% static 'plugins/select2/js/select2.full.min.js' %}"></script>
+    <script src="{% static 'dist/js/alertify.min.js' %}"></script>
+    <script src="{% static 'dist/js/register.js' %}"></script>
 
+    <script src="{% static 'dist/js/alertify.min.js' %}"></script>
+	<script>
+		alertify.set("notifier", "position", "top-right");
+		{% for msg in messages %}
+			alertify.success("{{msg}}")
+		{% endfor %}
+	</script>
+
+    <script>
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2()
+
+            //Initialize Select2 Elements
+            $('.select2bs5').select2({
+                theme: 'bootstrap-5'
+            })
+        })
+    </script>
+</body>
 </html>

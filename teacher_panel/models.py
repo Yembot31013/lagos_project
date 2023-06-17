@@ -40,7 +40,8 @@ class Student(models.Model):
         return f"{self.full_name} => {self.teacher.school.name}"
     
     def save(self, *args, **kwargs):
-        if not self.user:
+
+        if not self.user_id:
             # Generate username and password
             username = slugify(self.full_name) + get_random_string(5)
             password = get_random_string(8)
@@ -49,7 +50,10 @@ class Student(models.Model):
             user = User.objects.create_user(username=username, password=password)
             user.email = self.email
             user.save()
-            self.user = user
+
+            self.user_id = user.id
+
+            print('password', password)
 
             # Send login details to student's email
             # subject = 'Your login details for the competition platform'

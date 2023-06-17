@@ -12,8 +12,8 @@ from django.contrib.auth.models import User
 # Create your views here.
 @login_required(login_url='/login/')
 def teacher_index(request):
-    students = Student.objects.filter(user_id = request.user.id)
-    teachers = Teacher.objects.filter(user_id = request.user.id)
+    students = Student.objects.filter(user_id = request.user.id).first()
+    teachers = Teacher.objects.filter(user_id = request.user.id).first()
     if not students and not teachers:
         context = {
             "title": "Warning!!!",
@@ -23,7 +23,10 @@ def teacher_index(request):
         return render(request, 'general/verify.html', context)
     if not teachers:
         return redirect('student_page')
-    return render(request, 'teacher/dashboard.html')
+    context = {
+        "teacher": teachers
+    }
+    return render(request, 'teacher/dashboard.html', context)
 
 @login_required(login_url='/login/')
 def student_page(request):
@@ -39,6 +42,37 @@ def student_page(request):
     if not students:
         return redirect('teacher_index')
     return render(request, 'student/dashboard.html')
+
+@login_required(login_url='/login/')
+def manage_student(request):
+    return render(request, 'teacher/manageStudent.html')
+
+@login_required(login_url='/login/')
+def student_create(request):
+    teachers = Teacher.objects.filter(user_id = request.user.id)
+
+    if not teachers:
+        context = {
+            "title": "Warning!!!",
+            "description": "Sorry You can't access this page",
+            "icon": ""
+        }
+        return render(request, 'general/verify.html', context)
+    if request.method == 'POST':
+        full_name = request.POST.get('full_name')
+        email = request.POST.get('email')
+        gender = request.POST.get('sex')
+        avatar = request.FILES.get('picture')
+        date_string = request.POST.get('dob')
+        date_of_birth = datetime.strptime(date_string, '%Y-%m-%d').date()
+
+        teacher = teachers.first()
+        student = Student(teacher_id = teacher.id, full_name = full_name, email = email, gender=gender, avatar=avatar, date_of_birth=date_of_birth)
+        student.save()
+        messages.success(request, f'successfully registered {full_name}')
+        return redirect('/')
+
+    return render(request, 'general/student_register.html')
 
 def register(request):
     if request.user.is_authenticated:
@@ -62,24 +96,22 @@ def register(request):
             messages.success(
                 request, 'An account with this email already existed')
             return redirect('registerPage')
-        if form.is_valid():
+        elif form.is_valid():
             user = form.save()
             zone_obj = Zone.objects.filter(name = zone).first()
             district_obj = District.objects.filter(name = district, zone = zone_obj).first()
             school_obj = School.objects.filter(name = school, zone = zone_obj, district = district_obj, school_level=level).first()
-            teacher_obj = Teacher(user_id = user.id)
+            teacher_obj = Teacher(user_id = user.id, school_id = school_obj.id, zone_id = zone_obj.id, district_id = district_obj.id)
             teacher_obj.name = full_name
             teacher_obj.profile_pics = picture
-            teacher_obj.zone = zone_obj
-            teacher_obj.district = district_obj
-            teacher_obj.school = school_obj
             teacher_obj.school_level = level
             teacher_obj.save()
             messages.success(
                 request, 'registered successfully! login to continue')
+
             return redirect('/login/')
     context = {'form': form}
-    return render(request, 'general/account/index.html', context)
+    return render(request, 'general/account/register.html', context)
 
 
 def loginpage(request):

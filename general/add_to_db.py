@@ -12,26 +12,26 @@ def import_data(request):
     print(file_name)
     df = pd.read_excel(file_name, sheet_name='Sheet1')
 
-    # Create a dictionary of zone objects for faster lookups
-    zone_objects = {zone.name: zone for zone in Zone.objects.all()}
-
     # Create a dictionary of district objects for faster lookups
-    district_objects = {district.name: district.zone.name for district in District.objects.all()}
+    district_objects = {district.name: district for district in District.objects.all()}
+
+    # Create a dictionary of zone objects for faster lookups
+    zone_objects = {zone.name: zone.district.name for zone in Zone.objects.all()}
 
     for index, row in df.iterrows():
-        zone = zone_objects.get(row['ZONE'])
-        if not zone:
-            # Zone not found, create a new one
-            zone = Zone.objects.create(name=row['ZONE'])
-            zone_objects[row['ZONE']] = zone
-
         district = district_objects.get(row['DISTRICT'])
-        if not district or district != row['ZONE']:
-            # District not found, create a new one and link it to the zone
-            district = District.objects.create(name=row['DISTRICT'], zone=zone)
-            district_objects[row['DISTRICT']] = row['ZONE']
+        if not district:
+            # District not found, create a new one
+            district = District.objects.create(name=row['DISTRICT'])
+            district_objects[row['DISTRICT']] = district
+
+        zone = zone_objects.get(row['ZONE'])
+        if not zone or zone != row['DISTRICT']:
+            # Zone not found, create a new one and link it to the district
+            zone = Zone.objects.create(name=row['ZONE'], district=district)
+            zone_objects[row['ZONE']] = row['DISTRICT']
         else:
-            district = District.objects.get(name=row['DISTRICT'], zone=zone)
+            zone = Zone.objects.get(name=row['ZONE'], district=district)
 
 
         # Create a new school object and link it to the district and zone
